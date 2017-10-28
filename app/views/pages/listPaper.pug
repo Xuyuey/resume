@@ -1,0 +1,30 @@
+extend ../layout
+
+block content 
+	h1(style="margin-left:100px;") 期刊更新
+	.container
+		.row
+			table.table.table-hover.table-bordered
+				thead
+					tr
+						th 作者
+						th 题名
+						th 刊名
+						th 年份
+						th 期卷号
+						th 地址
+						th 更新
+						th 删除
+					tbody
+						each item in papers
+							tr(class="item-id-"+item._id)
+								td #{item.author}
+								td #{item.topic}
+								td #{item.journal}
+								td #{item.year}
+								td #{item.volume}
+								td #{item.address}
+								td: a(target="_blank",href="/admin/paper/update/"+item._id) 修改
+								td
+									button.btn.btn-danger.del(type="button",data-from="paper",data-id=item._id) 删除
+		script(src="/javascript/delete.js")

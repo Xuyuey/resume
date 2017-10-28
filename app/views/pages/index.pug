@@ -1,0 +1,157 @@
+extend ../layout.pug
+
+block content
+	div.total
+		div.row
+			div.col-md-2.hidden-sm.hidden-xs
+				img(src="images/ninghuansheng.jpg" )
+			div.col-md-10.col-sm-8
+				h2 Huansheng Ning
+				br
+				h3(style="margin-top:8px; margin-bottom:8px;") Ph.D., Professor, IEEE Senior Member
+				p(style="margin-top:8px; margin-bottom:8px;")
+					b(style=" font-size:20px;") Vice Dean 
+					| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					a(href="http://scce.ustb.edu.cn/" target="_blank") School of Computer and Communication Engineering,
+					a(href="http://www.ustb.edu.cn/" target="_blank") University of Science and Technology Beijing (USTB)
+					br
+				h3(style="margin-top:8px; margin-bottom:25px;")
+					a(style="font-size:18px; color:#000" href="http://www.cybermatics.org/lab/") Founder and Leader, Cybermatics and Cyberspace International Science and Technology Cooperation Base
+				
+		.row
+			hr
+
+		h3#cor Correspondence
+		div.row
+			div.col-md-12
+				table.table.table-striped(cellspacing="0" cellpadding="0" style="font-size:15px; margin-bottom:0")
+					tbody
+						tr
+							td(width="120px" height="34px") Telephone
+							td +86-10-62333015
+						tr
+							td(height="34px") Email:
+							td ninghuansheng[et]ustb dot edu dot cn
+						tr
+							td(height="34px") Lab Home:
+							td
+								a(href="http://www.cybermatics.org/lab/") http://www.cybermatics.org/lab
+						tr
+							td(height="34px") Office:
+							td Room 803, Computer Center, Yifu Building of USTB
+		hr
+
+		div.row
+			div.col-md-12(align="center")
+				p(style='margin-bottom:0px;')
+					| [<a href="#bio">Brief Biography</a>]
+					|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					| [<a href="#pub">Selected Publications</a>]
+					|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					| [<a href="#pat">Selected Patents</a>]
+					|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					| [<a href="#activity">Academic Activities</a>]
+					|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					| [<a href="#awards">Awards</a>]
+
+		hr#bio
+		h3 Brief Biography
+		div.row
+			.col-md-12#col-md-12
+				p #{bio1}
+				p #{bio2}
+				p #{bio3}
+				p #{bio4}
+
+		hr#pub
+		h3 Selected Publications
+			p(style="margin-top:10px;")
+				| [<a>In terms of years</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				| [<a>In terms of categories</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				| [<a href="https://scholar.google.com.hk/citations?user=a3I6vyUAAAAJ&hl=zh-CN/">Google Scholar</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				| [<a href="http://dblp.uni-trier.de/pers/hd/n/Ning:Huansheng.html">DBLP</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		.row
+			.col-md-12.subyear
+				- var y = 3000;
+				each paper in papers
+					mixin diff
+						p
+							font(size=3)
+								b #{paper.year}
+					mixin same
+						li #{paper.author}.
+							| (#{paper.year}). 
+							b #{paper.topic} 
+							i #{paper.journal}
+							| , 
+							| #{paper.volume}.
+							| [
+							a(href=paper.address target="_blank") PDF
+							| ]
+					if (paper.year!=y)
+						- y = paper.year;
+						+ diff
+						+ same
+					else
+						+ same
+		hr#pat
+		h3 Selected Patents
+		.row
+			.col-md-12
+				ol
+					each patent in patents
+						li(style="margin-bottom:1px;") #{patent.author} 
+							b #{patent.topic}<a href="#">小样</a>
+							| . #{patent.note}.
+
+		//- hr#activity
+		//- h3 Selected Academic Activities
+		//- .row
+		//- 	.col-md-12
+		//- 		ul
+		//- 			li
+		//- 				b PC Members:
+		//- 				ul
+		//- 					each member in activity.members
+		//- 						li #{member}
+		//- 			li
+		//- 				b Conference/Workshop Organization:
+		//- 				ul
+		//- 					each conference in activity.conferences
+		//- 						li 
+		//- 						| #{conference.detail} (
+		//- 						a(href=conference.address) #{conference.simple})
+
+		//- hr#awards
+		//- h3 Honors and Awards
+		//- .row
+		//- 	.col-md-12
+		//- 		ul
+		//- 			li IEEE Computer Society Golden Core Member Award (2014)
+		//- 			li IEEE Computer Society Meritorious Service Award (2014)
+
+		//- .row#update(style=" height:20px")
+		//- 	p Last Updated: 30 Nov. 2016
+
+	script.
+		var ps = $('.subyear p');
+		console.log(ps)
+		for(var i = 0; i<ps.length; i++){
+			if(ps.length)
+				var p1 = ps[i];
+				var p2 = ps[i+1];
+				$(p1).nextUntil(p2).wrapAll('<ol></ol>');
+		}
+	
+
+
+
+
+
+
+
+
+
+
+

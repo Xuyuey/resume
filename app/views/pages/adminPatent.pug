@@ -1,0 +1,25 @@
+extend ../layout.pug
+
+block content
+	h1(style="margin-left:100px;") 专利录入
+	.container
+		.form
+			form.form-horizontal(method="post",action="/admin/patent/new")
+				input(type="hidden", name="patent[_id]", value=patent._id)
+				.form-group
+					label.col-sm-2.control-label(for="inputAuthor") 作者
+					.col-sm-10
+						input#inputAuthor.form-control(type="text",name="patent[author]",value=patent.author, placeholder="Ninghuan Sheng, Pengfei Hu, Rui Wang")
+				.form-group
+					label.col-sm-2.control-label(for="inputTopic") 题目
+					.col-sm-10
+						input#inputTopic.form-control(type="text",name="patent[topic]",value=patent.topic, placeholder="The Internet of Things.")
+				.form-group
+					label.col-sm-2.control-label(for="inputNote") 专利号
+					.col-sm-10
+						input#inputNote.form-control(type="text",name="patent[note]",value=patent.note, placeholder="IEEE Access")
+				.form-group
+					.col-sm-offset-2.col-sm-10
+					button.btn.btn-default(type="submit") 录入
+
+

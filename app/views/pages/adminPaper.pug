@@ -1,0 +1,37 @@
+extend ../layout.pug
+
+block content
+	h1(style="margin-left:100px;") 期刊录入
+	.container
+		.form
+			form.form-horizontal(method="post",action="/admin/paper/new")
+				input(type="hidden", name="paper[_id]", value=paper._id)
+				.form-group
+					label.col-sm-2.control-label(for="inputAuthor") 作者
+					.col-sm-10
+						input#inputAuthor.form-control(type="text",name="paper[author]",value=paper.author, placeholder="Ninghuan Sheng, Pengfei Hu, Rui Wang")
+				.form-group
+					label.col-sm-2.control-label(for="inputYear") 年份
+					.col-sm-10
+						input#inputYear.form-control(type="text",name="paper[year]",value=paper.year, placeholder="201x")
+				.form-group
+					label.col-sm-2.control-label(for="inputTopic") 题目
+					.col-sm-10
+						input#inputTopic.form-control(type="text",name="paper[topic]",value=paper.topic, placeholder="The Internet of Things.")
+				.form-group
+					label.col-sm-2.control-label(for="inputJournal") 刊名
+					.col-sm-10
+						input#inputJournal.form-control(type="text",name="paper[journal]",value=paper.journal, placeholder="IEEE Access")
+				.form-group
+					label.col-sm-2.control-label(for="inputVolume") 卷号
+					.col-sm-10
+						input#inputVolume.form-control(type="text",name="paper[volume]",value=paper.volume, placeholder="xxx, xxx, xxx-xxx")
+				.form-group
+					label.col-sm-2.control-label(for="inputAddress") 地址
+					.col-sm-10
+						input#inputAddress.form-control(type="text",name="paper[address]",value=paper.address)
+				.form-group
+					.col-sm-offset-2.col-sm-10
+					button.btn.btn-default(type="submit") 录入
+
+
